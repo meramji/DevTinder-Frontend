@@ -1,18 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {addusers} from "./Utils/userSlice"
 
 const Login = () => {
-  const [emailId, setemailId] = useState("sundarpichai@gmail.com");
-  const [password, setpassword] = useState("Sundarpichai@123");
+  const [emailId, setemailId] = useState("MarkZuckerberg@gmail.com");
+  const [password, setpassword] = useState("Mark@123");
+  const dispatch = useDispatch();
 
   const handlelogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/login", {
-        emailId,
-        password,
-      },
-      {withCredentials:true}
-    );
+      const res = await axios.post(
+        "http://localhost:3000/login",
+        {
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
+      // console.log(res.data);
+      dispatch(addusers(res.data));
     } catch (err) {
       console.log(err);
     }
@@ -27,7 +34,7 @@ const Login = () => {
             <p className="py-6">
               Where code meets connection, and ideas turn into innovation.
             </p>
-          </div> 
+          </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
               <fieldset className="fieldset">

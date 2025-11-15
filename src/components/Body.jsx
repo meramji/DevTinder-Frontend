@@ -11,15 +11,15 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const userdata=useSelector(store=>store.user);
+  const userdata = useSelector((store) => store.user);
 
   const fetchuser = async () => {
+    if (userdata) return;
     try {
       const res = await axios.get(Base_url + "/profile/view", {
         withCredentials: true,
       });
       dispatch(addusers(res.data));
-      // setdata(false);
     } catch (err) {
       if (err.status === 401) {
         navigate("/login");

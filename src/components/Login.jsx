@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setpassword] = useState("Mark@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, seterror] = useState("");
 
   const handlelogin = async () => {
     try {
@@ -25,6 +26,7 @@ const Login = () => {
       dispatch(addusers(res.data));
       navigate("/feed");
     } catch (err) {
+      seterror(err?.response?.data || "something went wrong");
       console.log(err);
     }
   };
@@ -50,7 +52,9 @@ const Login = () => {
                   value={emailId}
                   onChange={(e) => setemailId(e.target.value)}
                 />
+                {/* <p className="text-red-400">{error}</p> */}
                 <label className="label">Password</label>
+
                 <input
                   type="password"
                   className="input"
@@ -58,6 +62,9 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setpassword(e.target.value)}
                 />
+                <p className="text-red-400">
+                  {error ? "Entered Invalid data" : ""}
+                </p>
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>

@@ -1,8 +1,8 @@
 const Usercard = ({ user }) => {
   console.log(user);
-  const { photourl, age, firstname, lastname, about, gender } = user;
+  const { photourl, age, firstname, lastname, about, gender, skills } = user;
   return (
-    <div className="card bg-base-300 w-[459px] shadow-sm h-[642px]">
+    <div className="card bg-base-300 w-[450px] shadow-sm h-[699px]">
       <figure>
         <img src={photourl} alt="avtar" />
       </figure>
@@ -13,6 +13,7 @@ const Usercard = ({ user }) => {
         </h2>
         {age && <p className="text-bold">{"Age" + "-:" + age}</p>}
         <p>{"Gender" + "-" + gender}</p>
+        <p>{"Skills-"+skills}</p>
         <p>{about}</p>
         <div className="card-actions space-x-11 justify-center">
           <button className="badge badge-outline bg-blue-500 text-xl m-4">

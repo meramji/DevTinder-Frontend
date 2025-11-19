@@ -40,10 +40,14 @@ const Body = () => {
   }
 
   return (
-    <div>
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+
+      <div className="flex-1">
+        <Outlet />
+      </div>
+
+      <Footer />
     </div>
   );
 };

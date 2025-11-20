@@ -31,52 +31,50 @@ const Connections = () => {
 
   if (connections.length === 0) {
     return (
-      <div >
-        <p className="text-4xl flex justify-center mt-30">No connections Found</p>
+      <div>
+        <p className="text-4xl flex justify-center mt-30">
+          No connections Found
+        </p>
       </div>
     );
   }
   return (
-   <div className="max-w-lg mx-auto my-10 space-y-4">
-  {connections.map((user) => (
-    <div
-      key={user._id}
-      className="bg-base-200 flex items-center gap-4 p-4 rounded-xl shadow-md hover:shadow-lg transition-all"
-    >
-      {/* Photo */}
-      <img
-        src={user.photourl}
-        alt="avatar"
-        className="w-16 h-16 rounded-full object-cover"
-      />
+    <div className="max-w-lg mx-auto my-2 space-y-4">
+      <h2 className="text-2xl text-white flex justify-center font-bold mb-5">
+        Connections
+      </h2>
+      {connections.map((user) => (
+        <div
+          key={user._id}
+          className="bg-base-200 flex items-center gap-4 p-4 rounded-xl shadow-md hover:shadow-lg transition-all"
+        >
+          <img
+            src={user.photourl}
+            alt="avatar"
+            className="w-16 h-16 rounded-full object-cover"
+          />
 
-      {/* Info Section */}
-      <div className="flex-1">
-        <h2 className="text-lg font-semibold">
-          {user.firstname} {user.lastname}
-        </h2>
+          <div className="flex-1">
+            <h2 className="text-lg font-semibold">
+              {user.firstname} {user.lastname}
+            </h2>
+            <p className="text-sm text-gray-500">
+              {user.age} • {user.gender}
+            </p>
 
-        {/* Age & Gender */}
-        <p className="text-sm text-gray-500">
-          {user.age} • {user.gender}
-        </p>
+            <p className="text-sm text-gray-500 mt-1">{user.about}</p>
 
-        {/* About */}
-        <p className="text-sm text-gray-700 mt-1">{user.about}</p>
-
-        {/* Skills */}
-        <div className="flex flex-wrap gap-2 mt-2">
-          {user.skills?.map((skill, i) => (
-            <span key={i} className="badge badge-outline text-xs">
-              {skill}
-            </span>
-          ))}
+            <div className="flex flex-wrap gap-2 mt-2">
+              {user.skills?.map((skill, i) => (
+                <span key={i} className="badge badge-outline text-xs">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
-  ))}
-</div>
-
   );
 };
 

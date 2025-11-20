@@ -7,6 +7,7 @@ import appstore from "./Utils/appstore";
 import Feed from "./components/Feed";
 import Error from "./components/Error";
 import Connections from "./components/Connections";
+import Requests from "./components/Requests";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
               <Route path="/feed" element={<Feed></Feed>}></Route>
               <Route path="/profile" element={<Profile></Profile>}></Route>
               <Route path="/connections" element={<Connections></Connections>}></Route>
-              <Route path="/requests" element={<Profile></Profile>}></Route>
+              <Route path="/requests" element={<Requests></Requests>}></Route>
             </Route>
             <Route path="/error" element={<Error></Error>}></Route>
           </Routes>

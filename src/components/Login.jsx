@@ -65,9 +65,6 @@ const Login = () => {
                 <p className="text-red-400">
                   {error ? "Entered Invalid data" : ""}
                 </p>
-                <div>
-                  <a className="link link-hover">Forgot password?</a>
-                </div>
                 <button
                   className="btn btn-neutral text-white bg-red-500 mt-4 hover:bg-amber-50 hover:text-black"
                   onClick={handlelogin}

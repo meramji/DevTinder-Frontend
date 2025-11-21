@@ -45,11 +45,22 @@ const Feed = () => {
       </div>
     );
   }
+  // console.log(feed);
+
+  if (!feed) return null;
+
+  if (feed.length <= 0) {
+    return (
+      <h1 className="text-2xl font-bold flex justify-center my-35">
+        No new user avialable
+      </h1>
+    );
+  }
 
   return (
     feed?.length > 0 && (
-      <div className="flex justify-center my-16">
-        <Usercard user={feed[2]}></Usercard>
+      <div className="flex justify-center mt-2 mb-5">
+        <Usercard user={feed[0]}></Usercard>
       </div>
     )
   );

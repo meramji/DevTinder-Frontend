@@ -39,7 +39,7 @@ const Connections = () => {
     );
   }
   return (
-    <div className="max-w-lg mx-auto my-2 space-y-4">
+    <div className="max-w-lg mx-auto my-2 space-y-4 mb-7">
       <h2 className="text-2xl text-white flex justify-center font-bold mb-5">
         Connections
       </h2>

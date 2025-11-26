@@ -5,19 +5,15 @@ import { useDispatch } from "react-redux";
 import { removeuserfeed } from "../Utils/Feedslice";
 
 const Usercard = ({ user }) => {
-  // console.log(user);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handlesendrequest = async (status, userid) => {
     try {
-      const res = await axios.post(
+      await axios.post(
         Base_url + "/request/send/" + status + "/" + userid,
         {},
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       dispatch(removeuserfeed(userid));
     } catch (err) {
@@ -27,8 +23,14 @@ const Usercard = ({ user }) => {
 
   const { _id, photourl, age, firstname, lastname, about, gender, skills } =
     user;
+
+  const aboutText =
+    typeof about === "string" && about.length > 100
+      ? about.slice(0, 100) + " ..."
+      : about;
+
   return (
-    <div className="card bg-base-300 w-[450px] shadow-sm h-[690px]">
+    <div className="card bg-base-300 w-[450px] shadow-sm h-[721px]">
       <div className="w-full h-[456px]">
         {photourl ? (
           <img
@@ -44,14 +46,28 @@ const Usercard = ({ user }) => {
           {firstname + "  " + lastname}
           <div className="badge badge-secondary">NEW</div>
         </h2>
-        {age && <p className="text-bold">{"Age" + "-" + age}</p>}
-        <p>{"Gender" + "-" + gender}</p>
-        <p>{"Skills-" + skills}</p>
-        <p>{about}</p>
+
+        {age && <p className="text-bold">{"Age-" + age}</p>}
+        <p>{"Gender-" + gender}</p>
+        <p className="overflow-hidden whitespace-nowrap text-ellipsis">
+          {"Skills-" + skills}
+        </p>
+
+        <p
+          className="overflow-hidden text-ellipsis"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          {aboutText}
+        </p>
+
         <div className="card-actions space-x-11 justify-center">
           <button
             className="btn btn-neutral"
-            onClick={() => handlesendrequest("ignore", _id)}
+            onClick={() => handlesendrequest("ignored", _id)}
           >
             Ignore
           </button>

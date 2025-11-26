@@ -19,16 +19,24 @@ const Navbar = () => {
     }
   };
 
+  const handleLogoClick = (e) => {
+    if (!user) {
+      e.preventDefault();
+      return;
+    }
+    navigate("/feed");
+  };
+
   return (
     <div className="flex justify-center">
       <div className="navbar bg-base-300 shadow-sm w-full  mx-4 my-4 px-4 rounded-xl">
         <div className="flex-1">
-          <Link
-            to="/"
+          <button
+            onClick={handleLogoClick}
             className="btn btn-ghost normal-case text-xl hover:bg-base-200"
           >
             DevTinder
-          </Link>
+          </button>
         </div>
 
         {user && (

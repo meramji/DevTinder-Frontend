@@ -32,7 +32,7 @@ const Connections = () => {
   if (connections.length === 0) {
     return (
       <div>
-        <p className="text-4xl flex justify-center mt-30">
+        <p className="text-xl flex justify-center mt-30">
           No connections Found
         </p>
       </div>

@@ -6,10 +6,10 @@ import { useNavigate } from "react-router";
 import { Base_url } from "../Utils/constants";
 
 const Login = () => {
-  const [emailId, setemailId] = useState("MarkZuckerberg@gmail.com");
-  const [password, setpassword] = useState("Mark@123");
+  const [emailId, setemailId] = useState("");
+  const [password, setpassword] = useState("");
   const [firstname, setfirstname] = useState("");
-  const [secondname, setsecondname] = useState("");
+  const [lastname, setlastname] = useState("");
   const [error, seterror] = useState("");
   const [islogin, setislogin] = useState(true);
   const dispatch = useDispatch();
@@ -30,8 +30,27 @@ const Login = () => {
     }
   };
 
+  const handlesignup = async () => {
+    try {
+      const res = await axios.post(
+        Base_url + "/signup",
+        {
+          firstname,
+          lastname,
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addusers(res?.data?.data));
+      navigate("/profile");
+    } catch (err) {
+      seterror(err?.response?.data || "Something went wrong");
+    }
+  };
+
   return (
-    <div className="hero bg-base-200 min-h-screen flex flex-col items-center py-10 px-4">
+    <div className="hero bg-base-200 min-h-[75vh] flex flex-col items-center py-10 px-4">
       <div className="flex justify-center mb-8 w-full">
         <div className="flex gap-4">
           <button
@@ -80,8 +99,8 @@ const Login = () => {
                   <input
                     type="text"
                     className="input input-bordered w-full"
-                    value={secondname}
-                    onChange={(e) => setsecondname(e.target.value)}
+                    value={lastname}
+                    onChange={(e) => setlastname(e.target.value)}
                   />
                 </div>{" "}
               </>
@@ -111,9 +130,9 @@ const Login = () => {
 
             <button
               className="btn w-full font-semibold bg-linear-to-r from-red-500 to-pink-500 text-white shadow-md hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out"
-              onClick={handlelogin}
+              onClick={islogin ? handlelogin : handlesignup}
             >
-              Login
+              {islogin ? "Login" : "Signup"}
             </button>
           </div>
         </div>

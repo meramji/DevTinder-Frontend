@@ -2,17 +2,20 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { Base_url } from "../Utils/constants";
-import { addusers, removeusers } from "../Utils/userSlice";
+import { removeusers } from "../Utils/userSlice";
+import { useState } from "react";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log(user);
+  const [optionopen, setoptionopen] = useState(false);
+
   const handleLogout = async () => {
     try {
       await axios.post(Base_url + "/logout", {}, { withCredentials: true });
       dispatch(removeusers());
+      setoptionopen(false);
       navigate("/login");
     } catch (err) {
       console.log(err);
@@ -24,12 +27,17 @@ const Navbar = () => {
       e.preventDefault();
       return;
     }
+    setoptionopen(false);
     navigate("/feed");
+  };
+
+  const toggleDropdown = () => {
+    setoptionopen((prev) => !prev);
   };
 
   return (
     <div className="flex justify-center">
-      <div className="navbar bg-base-300 shadow-sm w-full  mx-4 my-4 px-4 rounded-xl">
+      <div className="navbar bg-base-300 shadow-sm w-full mx-4 my-4 px-4 rounded-xl">
         <div className="flex-1">
           <button
             onClick={handleLogoClick}
@@ -40,42 +48,40 @@ const Navbar = () => {
         </div>
 
         {user && (
-          <div className="flex gap-2">
-            <p className="mt-2">{"Welcome," + user.firstname}</p>
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar hover:scale-105 transition-transform duration-200"
-              >
-                <div className="w-10 rounded-full">
-                  <img alt="User avatar" src={user.photourl} />
-                </div>
-              </div>
+          <div className="flex gap-2 relative">
+            <p className="mt-2">{"Welcome, " + user.firstname}</p>
 
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-              >
+            <div
+              onClick={toggleDropdown}
+              className="btn btn-ghost btn-circle avatar hover:scale-105 transition-transform duration-200 cursor-pointer"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="User avatar" src={user.photourl} />
+              </div>
+            </div>
+
+            {optionopen && (
+              <ul className="absolute right-0 top-14 bg-base-100 rounded-box shadow z-50 w-52 p-2 menu menu-sm">
                 <li>
-                  <Link to="/profile" className="justify-between">
+                  <Link to="/profile" onClick={() => setoptionopen(false)}>
                     Profile
-                    <span className="badge">New</span>
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/connections"}>Connections</Link>
+                  <Link to="/connections" onClick={() => setoptionopen(false)}>
+                    Connections
+                  </Link>
                 </li>
-
                 <li>
-                  <Link to={"/requests"}>Requests</Link>
+                  <Link to="/requests" onClick={() => setoptionopen(false)}>
+                    Requests
+                  </Link>
                 </li>
-
                 <li>
-                  <Link onClick={handleLogout}>Logout</Link>
+                  <button onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
-            </div>
+            )}
           </div>
         )}
       </div>

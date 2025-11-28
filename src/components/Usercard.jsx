@@ -32,47 +32,70 @@ const Usercard = ({ user }) => {
 
   return (
     <div className="card bg-base-300 w-[450px] shadow-sm h-[721px]">
-      <div className="w-full h-[456px]">
+      <div className=" object-cover w-full h-[456px]">
         {photourl ? (
-          <img
-            className="object-cover h-full w-full"
-            src={photourl}
-            alt="avatar"
-          />
+          <img className=" h-auto w-full" src={photourl} alt="avatar" />
         ) : null}
       </div>
 
-      <div className="card-body">
-        <h2 className="card-title text-xl">
+      <div className="card-body bg-gray-800">
+        <h2 className="card-title text-2xl flex justify-between font-mono">
           {firstname + "  " + lastname}
           <div
-            className="px-3 py-[3px] rounded-lg 
+            className="px-3 py-[3px] rounded-lg font-mono
      bg-linear-to-r from-[#1e1f25] to-[#131417]
-     border border-[#31343a]
-     text-xs text-[#338393a7] font-semibold tracking-wider
+     border border-[#31343a] 
+     text-xs text-[#c6bf488b] font-semibold tracking-wider
      shadow-[0_0_12px_rgba(255,211,105,0.45)]"
           >
             New Dev
           </div>
         </h2>
 
-        {age && <p className="text-bold">{"Age-" + age}</p>}
-        <p className="font-semibold">{"Gender-" + gender}</p>
-        <p className="overflow-hidden whitespace-nowrap text-ellipsis">
-          {"Skills-" + skills}
-        </p>
+        <div className="text-sm font-mono space-y-0.5">
+          {age && (
+            <p className="border-b border-[#2a2c31]">
+              <span className="text-[#8b8eff]   uppercase tracking-wide font-semibold">
+                Age:
+              </span>
+              <span className="text-gray-300"> {age} </span>
+            </p>
+          )}
 
-        <p
-          className="overflow-hidden text-ellipsis font-semibold"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
-          {aboutText}
-        </p>
-        <div className="flex justify-center">
+          <p className="text-gray-300 border-b border-[#2a2c31] pb-1">
+            <span className="text-[#8b8eff]    uppercase tracking-wide">
+              Gender:
+            </span>{" "}
+            <span className="text-white tracking-wide">{gender}</span>
+          </p>
+
+          <p
+            className="text-gray-300 border-b border-[#2a2c31] pb-1
+             overflow-hidden text-ellipsis
+             line-clamp-2"
+          >
+            <span className="text-[#8b8eff] uppercase tracking-wide">
+              Skills:
+            </span>{" "}
+            <span className="text-white tracking-wide">{skills}</span>
+          </p>
+
+          <p
+            className="text-gray-300 overflow-hidden text-ellipsis border-b border-[#2a2c31] pb-[0.5]"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            <span className="text-[#8b8eff]   uppercase tracking-wide">
+              About:
+            </span>{" "}
+            <span className="text-white tracking-wide">{aboutText}</span>
+          </p>
+        </div>
+
+        <div className="flex justify-center ">
           <button
             onClick={() => handlesendrequest("ignored", _id)}
             className="w-12 h-12 flex items-center  mr-8 justify-center

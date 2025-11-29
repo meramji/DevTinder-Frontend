@@ -31,7 +31,7 @@ const Usercard = ({ user, showButtons }) => {
       : about;
 
   return (
-    <div className="card bg-base-300 w-[450px] shadow-sm h-[721px]">
+    <div className="card bg-base-300 w-[450px] shadow-sm h-[721px] relative">
       <div className=" object-cover w-full h-[456px]">
         {photourl ? (
           <img className=" h-auto w-full" src={photourl} alt="avatar" />
@@ -42,7 +42,7 @@ const Usercard = ({ user, showButtons }) => {
         <h2 className="card-title text-2xl flex justify-between font-mono">
           {firstname + "  " + lastname}
           <div
-            className="px-3 py-[3px] rounded-lg font-mono
+            className="px-1 py-0.5 rounded-lg font-mono
      bg-linear-to-r from-[#1e1f25] to-[#131417]
      border border-[#31343a] 
      text-xs text-[#c6bf488b] font-semibold tracking-wider
@@ -96,7 +96,7 @@ const Usercard = ({ user, showButtons }) => {
         </div>
 
         {showButtons && (
-          <div className="flex justify-center ">
+          <div className="flex justify-center absolute bottom-3 left-36">
             <button
               onClick={() => handlesendrequest("ignored", _id)}
               className="w-12 h-12 flex items-center  mr-8 justify-center

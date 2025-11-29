@@ -60,7 +60,7 @@ const Feed = () => {
   return (
     feed?.length > 0 && (
       <div className="flex justify-center mt-2 mb-5">
-        <Usercard user={feed[0]}></Usercard>
+        <Usercard user={feed[0]} showButtons={true}></Usercard>
       </div>
     )
   );

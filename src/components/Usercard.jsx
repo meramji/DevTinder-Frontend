@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeuserfeed } from "../Utils/Feedslice";
 import { Handshake, EyeOff } from "lucide-react";
 
-const Usercard = ({ user }) => {
+const Usercard = ({ user, showButtons }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -95,31 +95,33 @@ const Usercard = ({ user }) => {
           </p>
         </div>
 
-        <div className="flex justify-center ">
-          <button
-            onClick={() => handlesendrequest("ignored", _id)}
-            className="w-12 h-12 flex items-center  mr-8 justify-center
+        {showButtons && (
+          <div className="flex justify-center ">
+            <button
+              onClick={() => handlesendrequest("ignored", _id)}
+              className="w-12 h-12 flex items-center  mr-8 justify-center
       bg-[#1B1D23]/80 backdrop-blur-sm border border-[#2B2E35] rounded-xl
       text-gray-300 shadow-sm
       hover:bg-[#2C2F36] hover:border-[#ff4d4d]
       hover:shadow-[0_0_12px_rgba(255,77,77,0.45)]
       active:scale-90 transition-all duration-200"
-          >
-            <EyeOff size={21} strokeWidth={2.2} />
-          </button>
+            >
+              <EyeOff size={21} strokeWidth={2.2} />
+            </button>
 
-          <button
-            onClick={() => handlesendrequest("interested", _id)}
-            className="w-12 h-12 flex items-center  ml-8 justify-center
+            <button
+              onClick={() => handlesendrequest("interested", _id)}
+              className="w-12 h-12 flex items-center  ml-8 justify-center
       bg-[#1B1D23]/80 backdrop-blur-sm border border-[#2B2E35] rounded-xl
       text-gray-300 shadow-sm
       hover:bg-[#2C2F36] hover:border-[#00d084]
       hover:shadow-[0_0_12px_rgba(0,208,132,0.45)]
       active:scale-90 transition-all duration-200"
-          >
-            <Handshake size={21} strokeWidth={2.2} />
-          </button>
-        </div>
+            >
+              <Handshake size={21} strokeWidth={2.2} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

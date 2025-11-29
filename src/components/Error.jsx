@@ -34,7 +34,7 @@ const ErrorPage = () => {
 
             <button
               onClick={() => navigate("/", { replace: true })}
-              className="btn w-full flex items-center justify-center gap-2 bg-gray-600 text-white hover:bg-accent-focus"
+              className="btn w-full flex items-center justify-center gap-2 bg-red-400 text-white hover:bg-accent-focus"
             >
               <Home size={18} /> Home
             </button>

@@ -36,7 +36,7 @@ const Editprofile = ({ user }) => {
 
   return (
     <div className="flex flex-col lg:flex-row flex-wrap gap-10 p-5 justify-center items-start w-full">
-      <div className="bg-[#75679532] rounded-xl border border-[#2c2d32] p-6 w-full max-w-[450px] mb-5">
+      <div className="bg-linear-to-r from-[#1e2a38] to-[#1b2533] rounded-2xl border border-[#2f3c4d] p-6 w-full max-w-[450px] mb-5 shadow-lg">
         <div className="hero-content flex-col w-full">
           <h1 className="text-4xl font-bold text-center mb-6 tracking-wide text-white">
             Edit Profile
@@ -46,24 +46,24 @@ const Editprofile = ({ user }) => {
             <div className="card-body">
               <fieldset className="space-y-4">
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                  <label className="text-xs text-[#7dd3fc] uppercase tracking-wide mb-1 block">
                     Firstname
                   </label>
                   <input
                     type="text"
-                    className="input input-bordered w-full bg-[#1c1d22] text-white"
+                    className="input input-bordered w-full bg-[#111827] border-[#2f3c4d]  text-white"
                     value={firstname}
                     onChange={(e) => setfirstname(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                  <label className="text-xs text-[#7dd3fc] uppercase tracking-wide mb-1 block">
                     Lastname
                   </label>
                   <input
                     type="text"
-                    className="input input-bordered w-full bg-[#1c1d22] text-white"
+                    className="input input-bordered w-full bg-[#111827] border-[#2f3c4d] text-white"
                     value={lastname}
                     onChange={(e) => setlastname(e.target.value)}
                   />
@@ -71,24 +71,24 @@ const Editprofile = ({ user }) => {
 
                 <div className="flex gap-4 w-full">
                   <div className="flex-1 min-w-[120px]">
-                    <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                    <label className="text-xs text-[#7dd3fc]  uppercase tracking-wide mb-1 block">
                       Age
                     </label>
                     <input
                       type="text"
-                      className="input input-bordered w-full bg-[#1c1d22] text-white"
+                      className="input input-bordered w-full bg-[#111827] border-[#2f3c4d] text-white"
                       value={age}
                       onChange={(e) => setage(e.target.value)}
                     />
                   </div>
 
                   <div className="flex-1 min-w-[120px] relative">
-                    <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                    <label className="text-xs text-[#7dd3fc] uppercase tracking-wide mb-1 block">
                       Gender
                     </label>
                     <button
                       type="button"
-                      className="input input-bordered w-full bg-[#1c1d22] text-left text-white flex items-center justify-between"
+                      className="input input-bordered w-full bg-[#111827] border-[#2f3c4d] text-left text-white flex items-center justify-between"
                       onClick={() => setShowGenderDropdown((prev) => !prev)}
                     >
                       <span>{gender || "Select gender"}</span>
@@ -115,52 +115,44 @@ const Editprofile = ({ user }) => {
                 </div>
 
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                  <label className="text-xs text-[#7dd3fc] uppercase tracking-wide mb-1 block">
                     About
                   </label>
                   <textarea
-                    className="textarea textarea-bordered w-full h-[70px] bg-[#1c1d22] text-white resize-none"
+                    className="textarea textarea-bordered w-full h-[70px] bg-[#111827] border-[#2f3c4d] text-white resize-none"
                     value={about}
                     onChange={(e) => setabout(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                  <label className="text-xs text-[#7dd3fc]   uppercase tracking-wide mb-1 block">
                     Skills
                   </label>
                   <input
                     type="text"
-                    className="input input-bordered w-full bg-[#1c1d22] text-white"
+                    className="input input-bordered w-full bg-[#111827] border-[#2f3c4d] text-white"
                     value={skills}
                     onChange={(e) => setskills(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wide mb-1 block">
+                  <label className="text-xs text-[#7dd3fc] uppercase tracking-wide mb-1 block">
                     Photo URL
                   </label>
                   <input
                     type="text"
-                    className="input input-bordered w-full bg-[#1c1d22] text-white"
+                    className="input input-bordered w-full bg-[#111827] border-[#2f3c4d] text-white"
                     value={photourl}
                     onChange={(e) => setphotourl(e.target.value)}
                   />
                 </div>
 
                 <p className="text-red-400 text-sm">{error}</p>
-
                 <button
                   onClick={saveprofile}
-                  className="w-full py-2.5 rounded-lg font-medium tracking-wide
-             bg-linear-to-r from-[#232427] to-[#1c1d20]
-             text-[#e5e5e5] border border-[#2f3035]
-             shadow-[0_0_6px_rgba(0,0,0,0.7)]
-             transition-all duration-300 ease-out
-             hover:shadow-[0_0_18px_rgba(255,70,70,0.35)]
-             hover:border-[#ff4545] hover:text-white
-             active:scale-[0.96]"
+                  className="w-full py-2.5 rounded-md font-medium tracking-wide bg-linear-to-r from-[#3b82f6] to-[#2563eb]  text-white border border-[#1d2430] transition-transform duration-300  hover:scale-[1.03] active:scale-[0.96]"
                 >
                   Save Profile
                 </button>
@@ -173,6 +165,7 @@ const Editprofile = ({ user }) => {
       <div className="w-full max-w-[400px]">
         <Usercard
           user={{ firstname, lastname, gender, about, age, skills, photourl }}
+          showButtons={false}
         />
       </div>
 

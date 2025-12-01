@@ -17,7 +17,11 @@ const Connections = () => {
       });
       dispatch(addconnections(res?.data?.data));
     } catch (err) {
-      navigate("/error");
+      if (err.response?.status === 401) {
+        navigate("/login");
+      } else {
+        navigate("/error");
+      }
     }
   };
 
@@ -30,7 +34,7 @@ const Connections = () => {
   if (connections.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <p className="text-xl text-gray-400">No connections Found</p>
+        <p className="text-xl font-semibold">No connections Found</p>
       </div>
     );
   }
@@ -47,8 +51,6 @@ const Connections = () => {
           className="
           bg-gray-800 border border-base-300 
           rounded-2xl shadow-md hover:shadow-xl 
-           
-          
           flex sm:flex-row flex-col sm:items-center items-start gap-5 p-5
           w-full
         "

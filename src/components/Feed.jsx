@@ -10,6 +10,8 @@ import ShimmerCard from "./Shimmer";
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
+  const currentUser = useSelector((store) => store.user);
+  const currentUserId = currentUser?._id;
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
 
@@ -23,8 +25,11 @@ const Feed = () => {
       const res = await axios.get(Base_url + "/feed", {
         withCredentials: true,
       });
-      console.log(res);
-      dispatch(addfeed(res?.data));
+      // console.log(res);
+      let data = res?.data;
+
+      data = data.filter((u) => u._id !== currentUserId);
+      dispatch(addfeed(data));
       setloading(false);
     } catch (err) {
       if (err.response?.status === 401) {

@@ -68,6 +68,11 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/Feed" onClick={() => setoptionopen(false)}>
+                    Explore
+                  </Link>
+                </li>
+                <li>
                   <Link to="/connections" onClick={() => setoptionopen(false)}>
                     Connections
                   </Link>

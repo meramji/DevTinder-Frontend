@@ -14,14 +14,19 @@ const Body = () => {
   const userdata = useSelector((store) => store.user);
 
   const fetchuser = async () => {
-    if (userdata) return;
+    if (userdata) {
+      navigate("/feed");
+      return;
+    }
     try {
       const res = await axios.get(Base_url + "/profile/view", {
         withCredentials: true,
       });
       dispatch(addusers(res.data));
+      navigate("/feed");
     } catch (err) {
-      if (err.status === 401) {
+      console.log(err);
+      if (err.response?.status === 401) {
         navigate("/login");
       } else {
         console.log(err);
